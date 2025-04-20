@@ -1,2 +1,2 @@
 # cornerplot
-Frequently used code for generation publication-ready corner plots
+Frequently used code for generating publication-ready corner plots
