@@ -41,7 +41,7 @@ def getBounds(data):
     
     return med,upperError,lowerError
     
-def makecorner(
+def corner(
         plot_data,
         *,
         color='#1f78b4',

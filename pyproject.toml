@@ -1,0 +1,13 @@
+# contents of pyproject.toml
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "makecorner"
+version = "0.1.0"
+dependencies = [
+  "numpy>=2.2.4",
+  "scipy>=1.15.2",
+  "matplotlib>=3.10.1"
+]
