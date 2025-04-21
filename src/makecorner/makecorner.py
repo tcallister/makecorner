@@ -116,7 +116,6 @@ def corner(
     contour_plot_args : None or dict (optional)
         Keyword arguments provided to `matplotlib.pyplot.contour`. Can be used to adjust contour linestyles,
         etc. Default `{'colors':'black'}`.
-        
 
     Returns
     -------
