@@ -4,7 +4,7 @@ import matplotlib.colors
 import matplotlib.pyplot as plt
 from matplotlib import style
 import os
-style.use(os.path.dirname(os.path.realpath(__file__))+'/plotting.mplstyle')
+style.use(os.path.dirname(os.path.realpath(__file__))+'/../../plotting.mplstyle')
 
 def getBounds(data):
 
