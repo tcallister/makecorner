@@ -24,7 +24,3 @@ path = "src/makecorner/__init__.py"
 
 [project.urls]
 "Source" = "https://github.com/tcallister/makecorner"
-
-[tool.hatch.build]
-include = ["src/makecorner"]
-
