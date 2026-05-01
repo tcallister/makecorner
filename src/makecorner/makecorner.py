@@ -3,8 +3,8 @@ from scipy.stats import gaussian_kde
 import matplotlib.colors
 import matplotlib.pyplot as plt
 from matplotlib import style
-import os
-style.use(os.path.dirname(os.path.realpath(__file__))+'/../../plotting.mplstyle')
+from importlib.resources import files
+style.use(files("makecorner") / "plotting.mplstyle")
 
 def getBounds(data):
 
@@ -51,6 +51,7 @@ def corner(
         ticklabelsize=10,
         titlesize=14,
         show_bounds=True,
+        scatter=False,
         logscale=False,
         vmax=None,
         figsize=None,
@@ -96,6 +97,8 @@ def corner(
         Defines fontsize of plot titles quoting marginal credible intervals. Default `14`.
     show_bounds : bool (optional)
         If True, will quote marginal 95% credible intervals above 1D histograms. Default `True`.
+    scatter : bool (optional)
+        If True, will produce 2D scatter plots instead of hexbin plots. Default `False`.
     logscale : bool (optional)
         If True, a logarithmic color scale is adopted for 2D posteriors. Default `False`.
     vmax : None or float (optional)
@@ -181,23 +184,32 @@ def corner(
                 
                 # Make a 2D density plot
                 ax = fig.add_subplot(ndim, ndim, int(1+(ndim+1)*i + (j+1)*ndim))
-                
-                ax.hexbin(
-                    plot_data[key]['data'],
-                    plot_data[k]['data'],
-                    cmap=cmap,
-                    mincnt=1,
-                    gridsize=bins,
-                    bins=hexscale,
-                    rasterized=True,
-                    extent=(
-                        plot_data[key]['plot_bounds'][0],
-                        plot_data[key]['plot_bounds'][1],
-                        plot_data[k]['plot_bounds'][0],
-                        plot_data[k]['plot_bounds'][1]),
-                    linewidths=(0,),
-                    zorder=0,
-                    vmax=vmax)
+
+                if not scatter:
+                    ax.hexbin(
+                        plot_data[key]['data'],
+                        plot_data[k]['data'],
+                        cmap=cmap,
+                        mincnt=1,
+                        gridsize=bins,
+                        bins=hexscale,
+                        rasterized=True,
+                        extent=(
+                            plot_data[key]['plot_bounds'][0],
+                            plot_data[key]['plot_bounds'][1],
+                            plot_data[k]['plot_bounds'][0],
+                            plot_data[k]['plot_bounds'][1]),
+                        linewidths=(0,),
+                        zorder=0,
+                        vmax=vmax)
+
+                else:
+                    ax.scatter(
+                        plot_data[key]['data'],
+                        plot_data[k]['data'],
+                        color=color,
+                        s=10,
+                        marker='.')
 
                 # Plot contours if requested
                 if contour_levels is not None:
