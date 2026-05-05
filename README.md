@@ -23,6 +23,6 @@ data = {
 corner(data, contour_levels=(0.5, 0.95))
 ```
 
-![Demo](.github/images/example.png)
+<img src=".github/images/example.png" alt="Demo" width="300">
 
 
