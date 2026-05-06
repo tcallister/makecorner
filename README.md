@@ -1,5 +1,7 @@
 # makecorner
 
+[![PyPI version](https://img.shields.io/pypi/v/makecorner)](https://pypi.org/project/makecorner/)    
+
 Code for generating publication-ready corner plots.
 
 ## Example
