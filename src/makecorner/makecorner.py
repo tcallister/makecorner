@@ -58,8 +58,10 @@ def corner(
         hspace=0.1,
         wspace=0.1,
         contour_levels=None,
+        histogram_args={},
         contour_kde_args={},
-        contour_plot_args={'colors':'black'}):
+        contour_plot_args={'colors':'black'},
+        hexbin_plot_args={}):
 
     """
     Helper function to generate nice-looking corner plots. The primary input, `plot_data`,
@@ -153,13 +155,15 @@ def corner(
                 color=color,
                 alpha=hist_alpha,
                 density=True,
-                zorder=0)
+                zorder=0,
+                **histogram_args)
         ax.hist(plot_data[key]['data'],
                 bins=np.linspace(plot_data[key]['plot_bounds'][0], plot_data[key]['plot_bounds'][1], bins),
                 histtype='step',
                 color='black',
                 density=True,
-                zorder=2)
+                zorder=2,
+                **histogram_args)
         ax.grid(True, dashes=(1, 3))
         ax.set_xlim(plot_data[key]['plot_bounds'][0], plot_data[key]['plot_bounds'][1])
         if show_bounds:
@@ -201,7 +205,8 @@ def corner(
                             plot_data[k]['plot_bounds'][1]),
                         linewidths=(0,),
                         zorder=0,
-                        vmax=vmax)
+                        vmax=vmax,
+                        **hexbin_plot_args)
 
                 else:
                     ax.scatter(
