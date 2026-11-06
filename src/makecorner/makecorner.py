@@ -58,6 +58,7 @@ def corner(
         hspace=0.1,
         wspace=0.1,
         contour_levels=None,
+        hexbin_bkgd_color='white',
         histogram_args={},
         contour_kde_args={},
         contour_plot_args={'colors':'black'},
@@ -141,7 +142,7 @@ def corner(
         hexscale=None
 
     # Define a linear color map
-    cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", ["white", color])
+    cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", [hexbin_bkgd_color, color])
     
     # Loop across dimensions that we want to plot
     for i, key in enumerate(keys):
